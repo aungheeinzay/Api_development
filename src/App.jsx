@@ -5,6 +5,8 @@ import Edit from './pages/Edit';
 import Index from './pages/Index';
 import Details from './pages/Details';
 
+
+
 const App = () => {
   const router = createBrowserRouter([{
     path:"/",
@@ -19,11 +21,11 @@ const App = () => {
         element:<Create/>
       },
       {
-        path:"/edit/:id",
+        path:"/edit/:noteId",
         element:<Edit/>
       },
       {
-        path:"/details/:id",
+        path:"/details/:noteId",
         element:<Details/>
       }
       

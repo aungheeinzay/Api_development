@@ -1,13 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Nav from '../components/Nav';
+
 const Main = () => {
     return (
-        <session>
-            <Nav/>
-            
-            <Outlet/>
-        </session>
+       <section className='max-w-5xl mx-auto h-screen'>
+        <Nav/>
+        <Outlet/>
+       </section>
     );
 }
 
