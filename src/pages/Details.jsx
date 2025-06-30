@@ -21,7 +21,7 @@ const fetchNote = async()=>{
 useEffect(()=>{
     fetchNote()
 },[])
-const {title,content,author,createdAt} =note;
+const {title,content,author,createdAt,cover_photo} =note;
     return (
          <>
          {
@@ -36,7 +36,13 @@ const {title,content,author,createdAt} =note;
                     <ClockIcon width={20}/>
                 </span>{postedTime(createdAt)}</p>
                 <h1 className='text-mediom'>{title}.</h1>
-                <p className='text-sm'>{content}</p>
+               {
+                cover_photo && 
+                 <div className="w-full aspect-video rounded-lg overflow-hidden ">
+                    <img src={`${import.meta.env.VITE_API}/`+cover_photo} alt="lee" className="w-full object-cover"/>
+                </div>
+               }
+                <p className='text-sm  break-words whitespace-normal text-wrap'>{content}</p>
                    
             </div>
          }

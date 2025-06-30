@@ -1,7 +1,7 @@
 import { Triangle } from "react-loader-spinner";
 const Loading = () => {
     return (
-        <div className='grid place-items-center'>
+        <div className=' grid place-items-center'>
             <Triangle
                         visible={true}
                         height="80"
