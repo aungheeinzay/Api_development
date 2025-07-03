@@ -5,10 +5,12 @@ import { Formik,Field,Form, } from 'formik';
 import StyleErrorMsg from './StyleErrorMsg';
 import { toast } from 'react-toastify';
 import * as Yup from "yup"
-import { useRef, useState } from 'react';
+import { useRef, useState,useContext } from 'react';
 import { Oval } from 'react-loader-spinner';
-
+import  { user_context } from '../contexts/UserContext';
 const NoteForm = ({isCreate}) => {
+        const {token} = useContext(user_context)
+    
     const [previewImg,setPreviewImg] = useState(null)
     const [loading,setLoading] = useState(false)
     const fileRef = useRef()
@@ -60,7 +62,10 @@ const NoteForm = ({isCreate}) => {
         try{
             const res = await fetch(API,{
             method,
-            body:formData
+            body:formData,
+            headers:{
+                Authorization : `Bearer ${token.jwtToken}`
+            }
         })
         if(res.ok===true){
             setLoading(false)

@@ -38,9 +38,12 @@ const {title,content,author,createdAt,cover_photo} =note;
                 <h1 className='text-mediom'>{title}.</h1>
                {
                 cover_photo && 
+                <>
                  <div className="w-full aspect-video rounded-lg overflow-hidden ">
                     <img src={`${import.meta.env.VITE_API}/`+cover_photo} alt="lee" className="w-full object-cover"/>
                 </div>
+                <hr className="mt-5 bg-slate-600"/>
+                </>
                }
                 <p className='text-sm  break-words whitespace-normal text-wrap'>{content}</p>
                    

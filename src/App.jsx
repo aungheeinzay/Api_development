@@ -4,8 +4,9 @@ import Create from './pages/Create';
 import Edit from './pages/Edit';
 import Index from './pages/Index';
 import Details from './pages/Details';
-
-
+import Login from './pages/Login';
+import Register from './pages/Register';
+import isLogin from './utils/isLogin';
 
 const App = () => {
   const router = createBrowserRouter([{
@@ -18,15 +19,25 @@ const App = () => {
       },
       {
         path:"/create",
-        element:<Create/>
+        element:<Create/>,
+        loader:isLogin
       },
       {
         path:"/edit/:noteId",
-        element:<Edit/>
+        element:<Edit/>,
+        loader:isLogin
       },
       {
         path:"/details/:noteId",
-        element:<Details/>
+        element:<Details/>,
+      },
+      {
+        path:"/register",
+        element:<Register/>
+      },
+      {
+        path:"/login",
+        element:<Login/>
       }
       
     ]

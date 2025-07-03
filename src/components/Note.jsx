@@ -2,16 +2,23 @@ import { TrashIcon,PencilSquareIcon,EyeIcon } from "@heroicons/react/24/solid";
 import { Link, useLocation } from "react-router-dom";
 import { postedTime } from "../utils/date";
 import { ToastContainer,Bounce,toast } from "react-toastify";
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import { Oval } from "react-loader-spinner";
+import { user_context } from "../contexts/UserContext";
+
+
 const Note = ({note,getNote}) => {
+  const {token} = useContext(user_context)
     const{_id,title,content,createdAt} = note;
     const[loading,setLoading] =useState(false)
     const deleteHandler = async()=>{
         setLoading(true)
         try{
             const res = await fetch(`${import.meta.env.VITE_API}/deleteNote/${_id}`,{
-                method:"DELETE"
+                method:"DELETE",
+                headers:{
+                Authorization : `Bearer ${token.jwtToken}`
+            }
             })
             
             if(res.status===204){

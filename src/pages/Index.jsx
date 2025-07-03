@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import Note from '../components/Note';
 import Plus from '../components/Plus';
 import Loading from '../components/Loading';
 import { ToastContainer,Bounce,toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import { getPaginationRange } from '../utils/paginaton';
+import { user_context } from '../contexts/UserContext';
 
 const Index = () => {
+    const {token} =useContext(user_context)
     const location = useLocation()
     const [notes,setNote] = useState([])
     const [loading,setLoading] = useState(true)
@@ -66,7 +68,8 @@ const Index = () => {
             ))
            }
         </div>
-        <div className='w-full mx-auto flex justify-center gap-3 mt-5'>
+        {
+            notes.length>0 ? <div className='w-full mx-auto flex justify-center gap-3 mt-5'>
            
            <button disabled={currentPage==1} className='bg-teal-600 text-white
                                 py-1 px-4 rounded-lg'
@@ -92,8 +95,11 @@ const Index = () => {
             className='bg-teal-600 text-white
                                 py-1 px-4 rounded-lg'
                                 onClick={nextPagination}>next</button>
-        </div>
-        <Plus/>
+        </div> : <p className='text-teal-600 text-lg text-center'>no note yet</p>
+        }
+        {
+            token && <Plus/>
+        }
           <ToastContainer
       position="top-right"
       autoClose={5000}

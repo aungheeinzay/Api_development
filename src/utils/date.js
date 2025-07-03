@@ -17,5 +17,5 @@ export const postedTime=(time)=>{
         if(isYesterday(time)){
             return "yesterday"
         }
-        return format(createdAt,'MM/dd')
+        return format(time,'MM/dd')
     }
