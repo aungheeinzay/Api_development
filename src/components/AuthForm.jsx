@@ -4,8 +4,10 @@ import StyleErrorMsg from './StyleErrorMsg';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { user_context } from '../contexts/UserContext';
+import { Oval } from 'react-loader-spinner';
 
 const AuthForm = ({isLogin}) => {
+    const [isLoading,setIsLoading] = useState(false)
     const {updateToken} =useContext(user_context)
     const [error,setError] = useState({})
     const navigate = useNavigate()
@@ -28,6 +30,7 @@ const AuthForm = ({isLogin}) => {
 
     let API;
     const authSubmit =async(values)=>{
+        setIsLoading(true)
         if(isLogin){
             API = `${import.meta.env.VITE_API}/login`;
         }else{
@@ -41,7 +44,7 @@ const AuthForm = ({isLogin}) => {
             body:JSON.stringify(values)
         
         })
-       
+       setIsLoading(false)
        const data = await res.json() 
         if(!isLogin && res.ok===true){
         
@@ -108,8 +111,19 @@ const AuthForm = ({isLogin}) => {
                         className="ps-1 w-full text-lg border-2 rounded-lg py-1 border-teal-600"/>
                         <StyleErrorMsg name="password"/>
                     </div>
-                    <button type='submit'
-                    className='w-full text-center bg-teal-600 text-white py-2 rounded-lg mt-3'>
+                    <button disabled={isLoading} type='submit'
+                    className='w-full text-center bg-teal-600 text-white py-2 rounded-lg mt-3 flex justify-center gap-3'>
+                    {
+                        isLoading &&  <Oval
+                                                visible={true}
+                                                height="20"
+                                                width="20"
+                                                color="#ccf5e0"
+                                                ariaLabel="oval-loading"
+                                                wrapperStyle={{}}
+                                                wrapperClass=""
+                                                />
+                    }
                         {
                             isLogin ? "Login" : "Register"
                         }

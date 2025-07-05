@@ -3,14 +3,17 @@ import { user_context } from "../contexts/UserContext";
 import { useContext } from "react";
 
 const Nav = () => {
-    const {token,updateToken,setToken} = useContext(user_context)
+    const {token,setToken} = useContext(user_context)
+    
     const navigate = useNavigate()
    const removeAuth=()=>{
     setToken(null)
     localStorage.removeItem("token")
     return navigate("/")
    }
+
     return (
+        <>
         <nav className='shadow-lg flex justify-between align-middle'>
            <Link to="/"> <h1 className='text-teal-600 font-bold text-3xl p-2'>Dnote.io</h1></Link>
             <ul className="flex flex-row justify-center items-center gap-3 me-3">
@@ -27,6 +30,15 @@ const Nav = () => {
                }
             </ul>
         </nav>
+
+        {
+            token?.email && <p
+            className="text-stone-500 text-lg my-5 "
+            >{token.email}</p>
+            
+        }
+        <hr />
+    </>
     );
 }
 

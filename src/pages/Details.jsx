@@ -21,16 +21,16 @@ const fetchNote = async()=>{
 useEffect(()=>{
     fetchNote()
 },[])
-const {title,content,author,createdAt,cover_photo} =note;
+const {title,content,userId,createdAt,cover_photo} =note;
     return (
          <>
          {
             loading && <Loading/> ||
-            <div className='w-4/5 mx-auto mt-10 border-teal-600 border-t-4 shadow-lg p-3'>
+            <div className='sm:w-3/5 w-[340px] mx-auto mt-10 border-teal-600 border-t-4 shadow-lg p-3'>
             <Link to={"/"} className='float-right'>
                <ArrowLeftIcon width={22}/>
             </Link>
-            <p className="text-teal-500 flex gap-3"><span><UserIcon width={20}/></span> {author}</p>
+            <p className="text-teal-500 flex gap-3"><span><UserIcon width={20}/></span> {userId.username || "unknown"}</p>
             <p className="text-teal-500 flex gap-3">
                 <span>
                     <ClockIcon width={20}/>

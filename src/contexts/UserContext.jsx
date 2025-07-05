@@ -13,12 +13,12 @@ const UserContext = ({children}) => {
         localStorage.setItem("token",token)
         setToken(atoken)
     }
-    console.log("token from context",token);
-    
     useEffect(_=>{
         const storedToken = localStorage.getItem("token")
         if(storedToken){
          setToken(JSON.parse(storedToken))
+        }else{
+            setToken(null)
         }
     },[])
    return (

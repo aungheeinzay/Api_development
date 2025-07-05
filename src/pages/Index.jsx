@@ -33,8 +33,6 @@ const Index = () => {
     
     const res = await fetch(`${import.meta.env.VITE_API}/note?page=${page}`)
     const {notes,totalPages} =await res.json()
-    
-    
     setLoading(false)
     setCountPages(totalPages)
     setTotalNotes(totalNotes)
